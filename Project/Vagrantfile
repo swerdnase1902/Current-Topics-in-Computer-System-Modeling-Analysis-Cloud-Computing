@@ -4,6 +4,7 @@ Vagrant.configure("2") do |config|
   config.ssh.username = "vagrant"
   config.ssh.password = "vagrant"
   config.vm.provider :docker do |d|
+     d.build_args = ['-t', 'cloud_project_vm']
      d.build_dir = "."
      d.remains_running = true
      d.has_ssh = true
