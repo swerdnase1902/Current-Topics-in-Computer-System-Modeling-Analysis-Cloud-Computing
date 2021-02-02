@@ -1,0 +1,32 @@
+Vagrant.configure("2") do |config|
+  config.ssh.insert_key = true
+  config.vm.hostname = "ubuntu"
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.vm.provider :docker do |d|
+     d.build_dir = "."
+     d.remains_running = true
+     d.has_ssh = true
+     d.create_args = ['--sysctl', 'net.ipv4.ip_default_ttl=65']
+     d.name = "cloud_project_vm"
+  end
+#   config.vm.provision :shell, path: "install.sh", privileged: false
+config.vm.provision :shell, inline: "sudo service xrdp restart", run: 'always'
+# config.vm.synced_folder "data", "/vagrant_data"
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+config.vm.network "private_network", ip: "192.168.33.178"
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  config.vm.network "forwarded_port", guest: 3389, host: 52571
+  config.vm.network "forwarded_port", guest: 4041, host: 4041
+  config.vm.network "forwarded_port", guest: 34123, host: 34123
+  config.vm.network "forwarded_port", guest: 34124, host: 34124
+  config.vm.network "forwarded_port", guest: 34125, host: 34125
+  config.vm.network "forwarded_port", guest: 34126, host: 34126
+  config.vm.network "forwarded_port", guest: 34127, host: 34127
+  config.vm.network "forwarded_port", guest: 18080, host: 18080
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+end
