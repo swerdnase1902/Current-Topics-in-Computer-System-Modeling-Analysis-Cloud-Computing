@@ -24,7 +24,7 @@ RUN cd /home/vagrant && aria2c -q "https://apache.osuosl.org/spark/spark-3.0.1/s
 ENV SPARK_HOME "/opt/spark"
 ENV PATH "$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin"
 ENV PYSPARK_PYTHON "/usr/bin/python3"
-RUN python3 -m pip install pyspark
+RUN python3 -m pip install pyspark numpy scipy pandas sklearn boto boto3 awscli pillow matplotlib opencv-python
 USER root
 RUN cd /home/vagrant && aria2c -q "https://go.microsoft.com/fwlink/?LinkID=760868" && DEBIAN_FRONTEND="noninteractive" apt install ./*.deb && rm *.deb
 RUN echo 'alias python=python3' >> /home/vagrant/.profile
