@@ -39,6 +39,7 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y firefo
 USER vagrant
 RUN cd /home/vagrant && aria2c -q "https://download.jetbrains.com/product?code=IIU&latest&distribution=linux" && tar xf *.tar.gz && rm *.tar.gz
 RUN cd /home/vagrant && git clone 'https://github.com/apache/spark.git'
+RUN cd /home/vagrant && git clone 'https://github.com/swerdnase1902/Spark-Video-Stitching.git'
 USER root
 EXPOSE 22
 EXPOSE 3389 4041 8080 34123 34124 34125 34126 34127 18080
