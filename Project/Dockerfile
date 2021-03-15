@@ -20,7 +20,7 @@ USER vagrant
 RUN cd /home/vagrant && aria2c -q "https://download.jetbrains.com/product?code=PC&latest&distribution=linux" && tar xf *.tar.gz && rm *.tar.gz
 RUN cd /home/vagrant && git clone https://github.com/swerdnase1902/Current-Topics-in-Computer-System-Modeling-Analysis-Cloud-Computing.git
 USER root
-RUN cd /home/vagrant && aria2c -q "https://downloads.apache.org/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz" && tar xf *.tgz && rm *.tgz && mv spark*/ /opt/spark
+RUN cd /home/vagrant && aria2c -q "https://downloads.apache.org/spark/spark-3.1.1/spark-3.1.1-bin-hadoop2.7.tgz" && tar xf *.tgz && rm *.tgz && mv spark*/ /opt/spark
 ENV SPARK_HOME "/opt/spark"
 ENV PATH "$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin"
 ENV PYSPARK_PYTHON "/usr/bin/python3"
